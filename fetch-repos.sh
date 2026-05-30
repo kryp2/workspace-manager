@@ -27,6 +27,14 @@ fi
 read -p "GitHub Username or Organization: " ORG_NAME
 read -p "Filter by topic (Optional, press Enter for all): " TOPIC
 
+# Guard against an empty owner. `gh repo list ""` does NOT error: it silently
+# falls back to listing the authenticated user's own repositories, which would
+# quietly populate repos.txt with the wrong repos.
+if [[ -z "${ORG_NAME// }" ]]; then
+    echo -e "${RED}Error: No GitHub username or organization provided.${NC}"
+    exit 1
+fi
+
 if [[ -z "$TOPIC" ]]; then
     echo -e "${BLUE}Fetching all repositories for $ORG_NAME...${NC}"
     gh repo list "$ORG_NAME" --limit 100 --json url -q '.[].url' >> repos.txt
