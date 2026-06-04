@@ -17,14 +17,14 @@ chmod +x setup.sh sync-configs.sh fetch-repos.sh
 if [[ ! -s "repos.txt" ]]; then
     echo "repos.txt is empty or missing."
     echo "Would you like to fetch your repositories automatically from GitHub now? (y/n)"
-    read -p "> " fetch_choice
+    read -r -p "> " fetch_choice
     if [[ "$fetch_choice" == "y" ]]; then
         ./fetch-repos.sh
     fi
 else
     echo "repos.txt already contains repository links."
     echo "Would you like to fetch new/updated repositories dynamically from GitHub? (y/n)"
-    read -p "> " fetch_choice
+    read -r -p "> " fetch_choice
     if [[ "$fetch_choice" == "y" ]]; then
         ./fetch-repos.sh
     fi
@@ -34,18 +34,18 @@ fi
 if [[ ! -s "config-repo-url.txt" ]]; then
     echo -e "\n${BLUE}Configuring private workspace folders (.gemini, .claude):${NC}"
     echo "Please provide the URL to your private configuration repository (optional):"
-    read -p "URL: " repo_url
-    if [[ ! -z "$repo_url" ]]; then
+    read -r -p "URL: " repo_url
+    if [[ -n "$repo_url" ]]; then
         echo "$repo_url" > config-repo-url.txt
     fi
 else
     current_url=$(cat config-repo-url.txt)
     echo -e "\nCurrent config-repo: ${BLUE}$current_url${NC}"
     echo "Would you like to change this URL? (y/n)"
-    read -p "> " change_config
+    read -r -p "> " change_config
     if [[ "$change_config" == "y" ]]; then
         echo "Provide the new URL for your private configuration repository:"
-        read -p "URL: " repo_url
+        read -r -p "URL: " repo_url
         echo "$repo_url" > config-repo-url.txt
     fi
 fi

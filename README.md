@@ -1,5 +1,8 @@
 # Workspace Manager Orchestrator
 
+[![CI](https://github.com/kryp2/workspace-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/kryp2/workspace-manager/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A lightweight, modular tool to orchestrate large development ecosystems. Automatically clone, update, and configure dozens of repositories with a single command.
 
 ## Features
