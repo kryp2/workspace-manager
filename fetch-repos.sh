@@ -24,8 +24,8 @@ if ! gh auth status &> /dev/null; then
 fi
 
 # Request Organization/Username and Topic
-read -p "GitHub Username or Organization: " ORG_NAME
-read -p "Filter by topic (Optional, press Enter for all): " TOPIC
+read -r -p "GitHub Username or Organization: " ORG_NAME
+read -r -p "Filter by topic (Optional, press Enter for all): " TOPIC
 
 # Guard against an empty owner. `gh repo list ""` does NOT error: it silently
 # falls back to listing the authenticated user's own repositories, which would
